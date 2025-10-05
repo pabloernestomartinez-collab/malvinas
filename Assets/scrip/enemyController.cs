@@ -5,8 +5,9 @@ public class enemyController : MonoBehaviour
     
     private Rigidbody2D _rbEng; // referencia al componente Rigidbody2D del enemigo
     private float _posX = 0f;// posicion inicial en x
-    private float _posY = 4f; // posicion inicial en y
+    private float _posY = 4.5f; // posicion inicial en y
     private float _speedX = 0.005f; // velocidad en x (puede ser negativa, es usada para el eje Y tambien)
+    private float _contador = 0f; // contador para la funcion seno
 
 
 
@@ -25,8 +26,9 @@ public class enemyController : MonoBehaviour
         {
             _speedX = -_speedX;
         }
-        _posX = _posX + _speedX;
-        _posY = Mathf.Sin(_posX);
-        _rbEng.position = new Vector2(_posX,4.5f+_posY); // actualizar la posicion del enemigo
+        _posX = _posX + _speedX; // actualizar la posicion en X
+        _contador = _contador + 0.005f; // incrementa el contador para la funcion seno
+        _posY = 4.5f + Mathf.Sin(_contador); // actualizar la posicion en Y usando la funcion seno
+        _rbEng.position = new Vector2(_posX,_posY); // actualizar la posicion del enemigo
     }
 }
