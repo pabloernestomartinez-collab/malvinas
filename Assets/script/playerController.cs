@@ -3,9 +3,10 @@ using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour
 {
-
+    public GameObject misilArgPrefab; // prefab del misil del jugador   
     private Rigidbody2D _rb; // referencia al componente Rigidbody2D del jugador
     private Vector2 movepermanente; // vector para mantener el movimiento constante del jugador
+    private float _delay = 0.5f; // delay entre disparos
 
     private void Start()
     {
@@ -32,17 +33,23 @@ public class playerController : MonoBehaviour
         {
             _rb.position = new Vector2(-8f, _rb.position.y);
         }
-        if (_rb.position.y > 3f) // limitar el movimiento en Y
+        if (_rb.position.y > -3f) // limitar el movimiento en Y
         {
-            _rb.position = new Vector2(_rb.position.x, 3f);
+            _rb.position = new Vector2(_rb.position.x, -3f);
         }
         if (_rb.position.y < -5.5f)
         {
             _rb.position = new Vector2(_rb.position.x, -5.5f);
         }
+        _delay += Time.deltaTime; // incrementar el delay
     }
-private void OnAttack()
+    private void OnAttack()
     {
-        Debug.Log("atacando"); // borrar esta linea una vez depurado el programa
+        if (_delay > 1f)// si no ha pasado el delay, no se puede disparar
+        {        
+            _delay = 0f; // resetear el delay
+            Instantiate(misilArgPrefab, new Vector3(_rb.position.x, _rb.position.y+1,0), Quaternion.identity); // instanciar un nuevo misil en la posición actual del jugador
+        }
+
     }
 }

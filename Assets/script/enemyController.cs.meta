@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: bafa1b7913e206b479924cb5f8bb8a8f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - misilEngPrefab: {fileID: 5378370427690188750, guid: 2d2848ad7ab521442a90490c01e3b478, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
